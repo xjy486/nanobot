@@ -157,6 +157,17 @@ PROVIDERS: tuple[ProviderSpec, ...] = (
         detect_by_base_keyword="siliconflow",
         default_api_base="https://api.siliconflow.cn/v1",
     ),
+    # One API: self-hosted OpenAI-compatible gateway.
+    ProviderSpec(
+        name="oneapi",
+        keywords=("oneapi", "one-api"),
+        env_key="OPENAI_API_KEY",
+        display_name="One API",
+        backend="openai_compat",
+        is_gateway=True,
+        detect_by_base_keyword="oneapi",
+        default_api_base="http://localhost:3000/v1",
+    ),
 
     # VolcEngine (火山引擎): OpenAI-compatible gateway, pay-per-use models
     ProviderSpec(

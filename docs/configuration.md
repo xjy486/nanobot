@@ -71,6 +71,7 @@ IMAP_PASSWORD=your-password-here
 | `gemini` | LLM (Gemini direct) | [aistudio.google.com](https://aistudio.google.com) |
 | `aihubmix` | LLM (API gateway, access to all models) | [aihubmix.com](https://aihubmix.com) |
 | `siliconflow` | LLM (SiliconFlow/硅基流动) | [siliconflow.cn](https://siliconflow.cn) |
+| `oneapi` | LLM (self-hosted One API gateway) | [github.com/songquanpeng/one-api](https://github.com/songquanpeng/one-api) |
 | `dashscope` | LLM (Qwen) | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 | `moonshot` | LLM (Moonshot/Kimi) | [platform.moonshot.cn](https://platform.moonshot.cn) |
 | `zhipu` | LLM (Zhipu GLM) | [open.bigmodel.cn](https://open.bigmodel.cn) |
@@ -158,6 +159,32 @@ nanobot agent -c ~/.nanobot-telegram/config.json -w /tmp/nanobot-telegram-test -
 ```
 
 > Docker users: use `docker run -it` for interactive OAuth login.
+
+</details>
+
+<details>
+<summary><b>One API (self-hosted OpenAI-compatible gateway)</b></summary>
+
+[One API](https://github.com/songquanpeng/one-api) exposes an OpenAI-compatible gateway. Point `apiBase` at your One API deployment's `/v1` endpoint and use a One API token as `apiKey`.
+
+```json
+{
+  "providers": {
+    "oneapi": {
+      "apiKey": "your-one-api-token",
+      "apiBase": "http://localhost:3000/v1"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "provider": "oneapi",
+      "model": "openai/gpt-4o-mini"
+    }
+  }
+}
+```
+
+> If One API is deployed remotely, replace `apiBase` with your HTTPS gateway URL, for example `https://oneapi.example.com/v1`.
 
 </details>
 
